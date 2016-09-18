@@ -19,9 +19,9 @@ This app bridges the gap, by exposing a websocket on localhost. A web-page can t
 
 Only USB receipt printers are currently supported.
 
-- *Networked printers* may be supported in future.
-- *Serial/Parallel printers* may be accessed via a USB adaptor.
-- CUPS/IPP/Windows shared printers are out of scope at this stage, please hook in directly via USB.
+- **Networked printers** may be supported in future.
+- **Serial/Parallel printers** may be accessed via a USB adaptor.
+- **CUPS/IPP/Windows** shared printers are out of scope at this stage, please hook in directly via USB.
 
 ### Supported printers
 
@@ -64,5 +64,5 @@ This was tested on an Epson TM-T20.
 Pull requests are welcome and appreciated. This project is quite new, please see the issue tracker for ideas of things to work on.
 
 # Screenshot
-![screenshot](https://github.com/mike42/escpos-snippets/raw/master/chrome-escpos-receipt/assets/screenshot.png)
+![screenshot](https://github.com/receipt-print-hq/chrome-raw-print/raw/master/assets/screenshot.png)
 

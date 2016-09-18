@@ -1,0 +1,91 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Web-based raw printing example</title>
+</head>
+<body>
+<h1>Web-based raw printing example</h1>
+
+<p>This snippet demonstrates how to send raw binary data to a printer from a browser-based Javascript application.</p>
+
+<p>A running Chrome App will pick up the data via a local WebSocket, and deliver it to any configured printers.</p>
+
+<form>
+  <input type="button" onclick="directPrintBytes(printSocket, [0x1b, 0x40, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x0a, 0x1d, 0x56, 0x41, 0x03]);" value="Print test string"/>
+  <input type="button" onclick="directPrintFile(printSocket, 'example.bin');" value="Load and print 'example.bin'" />
+</form>
+
+<script type="text/javascript">
+/**
+ * Retrieve binary data via XMLHttpRequest and print it.
+ */
+function directPrintFile(socket, path) {
+  // Get binary data
+  var oReq = new XMLHttpRequest();
+  oReq.open("GET", path, true);
+  oReq.responseType = "arraybuffer";
+  console.log("directPrintFile(): Making request for binary file");
+
+  oReq.onload = function (oEvent) {
+    console.log("directPrintFile(): Response received");
+    var arrayBuffer = oReq.response; // Note: not oReq.responseText
+    if (arrayBuffer) {
+      var byteArray = new Uint8Array(arrayBuffer);
+      var result = directPrint(socket, byteArray);
+      if(!result) {
+        alert('Faled, check the console for more info.');
+      }
+    }
+  };
+  oReq.send(null);
+}
+
+/**
+ * Extract binary data from a byte array print it.
+ */
+function directPrintBytes(socket, bytes) {
+  var data = new ArrayBuffer(bytes.length);
+  var dataView = new Uint8Array(data, 0, bytes.length);
+  dataView.set(bytes, 0);
+  var result = directPrint(socket, dataView);
+  if(!result) {
+    alert('Faled, check the console for more info.');
+  }
+}
+
+/**
+ * Serialise and send a Uint8Array of binary data.
+ */
+function directPrint(socket, printData) {
+  // Type check
+  if (!(printData instanceof Uint8Array)) {
+    console.log("directPrint(): Argument type must be Uint8Array.")
+    return false;
+  }
+  if(printSocket.readyState !== printSocket.OPEN) {
+    console.log("directPrint(): Socket is not open!");
+    return false;
+  }
+  // Serialise, send.
+  var payloadString = JSON.stringify(Array.apply(null, printData));
+  console.log("Sending " + printData.length + " bytes of print data.");
+  printSocket.send(payloadString);
+  return true;
+}
+
+/**
+ * Connect to print server on startup.
+ */
+var printSocket = new WebSocket("ws://localhost:9876", ["protocolOne", "protocolTwo"]);
+printSocket.onopen = function (event) {
+  console.log("Socket is connected.");
+}
+printSocket.onerror = function(event) {
+  console.log('Socket error', event);
+};
+printSocket.onclose = function(event) {
+  console.log('Socket is closed');
+}
+</script>
+</body>
+</html>

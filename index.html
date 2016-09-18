@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="style/main.css" rel="stylesheet">
+    <script src="vendor/websocket-server/sha1.js"></script>
+    <script src="vendor/websocket-server/http.js"></script>
+</head>
+<body>
+<h1>Receipt printer connector demo</h1>
+<p>This is an example snippet showing how developers can hook up to USB receipt printers using the Chrome API.</p>
+
+<p>On supported printers, check that:</p>
+
+<ul><li>You have permission to print. Check <tt>udev</tt> for this.</li><li>You have unloaded or blacklisted the kernel driver: <tt>sudo rmmod usblp</tt> on Linux.</li></ul>
+
+<div class="controls">
+  <button id="selectPrinter">Select Printers</button>
+  <button id="print">Test print</button>
+</div>
+
+<table id="printerList">
+  
+</table>
+
+<div id="status">Status: Waiting for printer selection.</div>
+
+<script src="index.js"></script>
+</body>
+</html>

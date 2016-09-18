@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "USB receipt printer connector",
+  "version": "0.1",
+  "minimum_chrome_version": "25",
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "app": {
+    "background": {
+      "scripts": ["main.js"]
+    }
+  },
+  "sockets": {
+    "tcpServer": {
+        "listen": "*"
+    }
+  },
+  "permissions": ["usb"],
+  "optional_permissions": [
+    {"usbDevices": [
+        {"vendorId": 1046, "productId": 20497},
+        {"vendorId": 1659, "productId": 8965},
+        {"vendorId": 1208, "productId": 3587}]
+    }]
+}

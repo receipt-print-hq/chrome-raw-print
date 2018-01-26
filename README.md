@@ -1,5 +1,9 @@
 # Raw printing for Chrome
 
+**Chrome Apps are being discontinued by Google in 2018, so this project will no longer be actively developed. At the time of writing, neither WebUSB nor raw sockets can be used from regular web pages, so you will need to transition to a native app for this functionality once the runtime becomes unavailable.**
+
+**Thank you to everybody who has used or contributed to this app over the past year and a half!**
+
 This is a Chrome app to allow browser-based Javascript code to pass raw data to a supported printer. It is aimed at developers of web-based point-of-sale systems where server-side printing is not feasable.
 
 This has been developed for use with a USB receipt printer, with an ESC/POS command generator ([escpos-php](https://github.com/mike42/escpos-php)) providing the binary data.

@@ -1,17 +1,21 @@
 {
-  "manifest_version": 2,
-  "name": "USB receipt printer connector",
-  "version": "0.1",
-  "minimum_chrome_version": "25",
-  "icons": {
-    "128": "icon_128.png"
-  },
   "app": {
     "background": {
       "scripts": ["main.js"]
     }
   },
+  "manifest_version": 2,
+  "name": "Raw print connector",
+  "version": "0.2",
+  "description": "Pass raw data to USB receipt printers",
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "minimum_chrome_version": "25",
   "sockets": {
+    "tcp": {
+      "connect": "*"
+    },
     "tcpServer": {
         "listen": "*"
     }

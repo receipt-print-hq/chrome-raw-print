@@ -7,15 +7,18 @@
     <script src="vendor/websocket-server/http.js"></script>
 </head>
 <body>
-<h1>Receipt printer connector demo</h1>
-<p>This is an example snippet showing how developers can hook up to USB receipt printers using the Chrome API.</p>
+<h1>Raw print connector</h1>
+
+<p>This app allows you to send raw commands to your printer. It is designed to make receipt printers accessible from webpages for point-of-sale kiosks.</p>
+
+<p>While this app is open, web pages can pass data to those printers via a websocket. Example code for accessing this websocket from Javascript can be found <a target="_blank" href="https://github.com/receipt-print-hq/chrome-raw-print/tree/master/example">on the project page</a>.</p>
 
 <p>On supported printers, check that:</p>
 
 <ul><li>You have permission to print. Check <tt>udev</tt> for this.</li><li>You have unloaded or blacklisted the kernel driver: <tt>sudo rmmod usblp</tt> on Linux.</li></ul>
 
 <div class="controls">
-  <button id="selectPrinter">Select Printers</button>
+  <button id="selectPrinter">Select USB Printers</button>
   <button id="print">Test print</button>
 </div>
 

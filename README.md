@@ -6,12 +6,12 @@ This has been developed for use with a USB receipt printer, with an ESC/POS comm
 
 ## The problem
 
-Web-based and cloud-based point-of-sale systems have their benefits, but adding printing is difficult.
+It can be difficult to add printing to a web-based point-of-sale system:
 
-- Using system printing and a vendor driver produces terrible output
-- Server-side printing and 'cloud' do not mix well
+- The local print system does not use raw output, so you get low-quality, rasterised output.
+- Allowing inbound connectivity to allow a server to print requires a static IP, and is challenging to secure and debug.
 
-This app bridges the gap, by exposing a websocket on localhost. A web-page can then retrieve binary print data from the server, and pass it to the app for printing.
+This app solves the problem by exposing a websocket on localhost. A web-page can then retrieve binary print data from the server, and pass it to the app for printing.
 
 ## Compatibility
 
@@ -41,28 +41,42 @@ This app is simply a connector. In theory, any page description language is supp
 
 This application is not yet available in the Chrome store, so the installation steps are a bit unusual:
 
-- Under `chrome://extensions`, tick developer mode, and 'load unpacked extension', and locate this folder.
+- Download and extract the [most recent release](https://github.com/receipt-print-hq/chrome-raw-print/releases).
+- Under `chrome://extensions`, tick developer mode, and 'load unpacked extension', and locate the extracted folder.
+
+![screenshot](https://github.com/receipt-print-hq/chrome-raw-print/raw/master/assets/loaded.png)
+
 - Launch the extension, select your printer
  - If not listed, find the USB product, vendor ID, add it to `manifest.md`, and restart.
 - Click print
- - If it doesn't print, check the error log and see the notes within the app for the basic things to check.
- - In particular, unload the `usblp` kernel module if applicable as it will claim the USB interface to the printer.
+ - If it doesn't print, check the error log and see the notes displayed on the app window for the basic things to check.
+ - In particular, unload the `usblp` kernel module if applicable, as it will claim the USB interface to the printer.
 
 ## Demo
 
-A small example web-page available under `example/`, which will print a "Hello World" receipt in ESC/POS if the raw printint app is running, with an ESC/POS printer configured. Steps to try it out:
+A small example web-page available under `example/`, which will print a "Hello World" receipt in ESC/POS if the raw printing app is running, with an ESC/POS printer configured. Steps to try it out:
 
 - Run the app
 - Add a printer
 - Open the example web page
 - Click a few buttons and hope for output.
 
-This was tested on an Epson TM-T20. 
+This was tested on an Epson TM-T20.
+
+# Build
+
+```
+yarn
+gulp
+```
+
+The `chrome-raw-print` subfolder contains the compiled files.
 
 ## Contribute
 
 Pull requests are welcome and appreciated. This project is quite new, please see the issue tracker for ideas of things to work on.
 
 # Screenshot
+
 ![screenshot](https://github.com/receipt-print-hq/chrome-raw-print/raw/master/assets/screenshot.png)
 

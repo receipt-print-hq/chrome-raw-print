@@ -1,0 +1,12 @@
+{
+  "name": "chrome-raw-print",
+  "version": "0.2",
+  "description": "Chrome app to enable raw printing from a browser ",
+  "main": "dest/index.js",
+  "repository": "git@github.com:receipt-print-hq/chrome-raw-print.git",
+  "author": "Michael Billington <michael.billington@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}

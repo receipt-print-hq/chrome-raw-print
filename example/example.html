@@ -33,7 +33,7 @@ function directPrintFile(socket, path) {
       var byteArray = new Uint8Array(arrayBuffer);
       var result = directPrint(socket, byteArray);
       if(!result) {
-        alert('Faled, check the console for more info.');
+        alert('Failed, check the console for more info.');
       }
     }
   };
@@ -49,7 +49,7 @@ function directPrintBytes(socket, bytes) {
   dataView.set(bytes, 0);
   var result = directPrint(socket, dataView);
   if(!result) {
-    alert('Faled, check the console for more info.');
+    alert('Failed, check the console for more info.');
   }
 }
 
